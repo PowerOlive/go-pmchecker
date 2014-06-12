@@ -41,6 +41,7 @@ func testPorts(igd igdman.IGD, igdType string) {
 	expiration := 1 * time.Second
 
 	for _, externalPort := range portsToCheck {
+		igd.RemovePortMapping(igdman.TCP, externalPort)
 		err := igd.AddPortMapping(igdman.TCP, internalIP, 15600, externalPort, expiration)
 		success := "success"
 		if err != nil {
